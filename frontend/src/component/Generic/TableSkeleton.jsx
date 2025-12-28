@@ -42,7 +42,7 @@ export default function TableSkeleton() {
       </table>
 
       <div className="flex justify-center p-2 rounded-md animate-pulse">
-        <div className="flex items-center justify-between text-gray-500 bg-gray-200 rounded-full gap-5 p-1 w-44">
+        <div className="flex items-center justify-between text-gray-500 bg-white/40 rounded-full gap-5 p-1 w-44">
           <button>
             <ChevronLeftIcon className="size-5 cursor-not-allowed text-gray-400" />
           </button>

@@ -103,7 +103,7 @@ export default function Dashboard() {
         <NavLink
           to={`/ticket/view?status=${detail.query}`}
           key={detail.label}
-          className="bg-gray-50 w-full hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-5 sm:border-none"
+          className="bg-white/60 backdrop-blur-md border border-white/50 w-full hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-5 sm:border-none"
         >
           <div className="flex lg:flex-col justify-between w-full sm:py-5 gap-2.5">
             <div
@@ -141,7 +141,7 @@ export default function Dashboard() {
     <section className="min-h-full w-full">
       <main className="space-y-20">
         <section className="mt-10 flex justify-start gap-10">
-          <div className="bg-gray-50 w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between gap-2 items-center px-5 py-5 sm:border-none">
+          <div className="bg-white/60 backdrop-blur-md border border-white/50 w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between gap-2 items-center px-5 py-5 sm:border-none">
             <Square3Stack3DIcon className="size-10 text-blue-600" />
             <span className="text-stone-700  text-base sm:text-xl font-medium">
               Total Assigned Tickets
@@ -152,7 +152,7 @@ export default function Dashboard() {
           </div>
 
           {fetchingUserProfile ? (
-            <div className="bg-gray-50 min-w-max w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-5 sm:border-none">
+            <div className="bg-white/60 backdrop-blur-md border border-white/50 min-w-max w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-5 sm:border-none">
               <UserIcon className="size-10" />
               <div>
                 <p className="text-right">
@@ -164,7 +164,7 @@ export default function Dashboard() {
               </div>
             </div>
           ) : (
-            <div className="bg-gray-50 min-w-max w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-5 sm:border-none">
+            <div className="bg-white/60 backdrop-blur-md border border-white/50 min-w-max w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-5 sm:border-none">
               <UserIcon className="size-10" />
               <div>
                 <p className="font-medium text-[#444] text-lg text-right capitalize">

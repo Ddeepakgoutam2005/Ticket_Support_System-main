@@ -162,10 +162,10 @@ function LoadingSkeleton() {
 
       {/* Overview */}
       <section>
-        <h1 className="font-medium border-b-2 border-gray-400 pb-3">
+        <h1 className="font-medium border-b border-white/50 pb-3">
           Overview
         </h1>
-        <div className="grid grid-cols-1 divide-y-2">
+        <div className="grid grid-cols-1 divide-y divide-white/20">
           {headings.map((heading) => (
             <div className="grid grid-cols-3 p-5 py-4 text-sm" key={heading}>
               <p className="font-medium col-span-1 capitalize flex items-center">
@@ -181,12 +181,12 @@ function LoadingSkeleton() {
 
       {/* Management */}
       <section>
-        <h1 className="font-medium border-b-2 border-gray-400 pb-3">
+        <h1 className="font-medium border-b border-white/50 pb-3">
           Management
         </h1>
 
         {userRole === "SUPER_ADMIN" && (
-          <div className="grid grid-cols-1 divide-y-2">
+          <div className="grid grid-cols-1 divide-y divide-white/20">
             <div className="grid grid-cols-3 p-5 text-sm">
               <p className="font-medium col-span-1 capitalize flex items-center">
                 Assign Ticket To
@@ -224,7 +224,7 @@ function LoadingSkeleton() {
       {/* Delete ticket */}
       {userRole === "SUPER_ADMIN" && (
         <section>
-          <h1 className="font-medium border-b-2 border-gray-400 pb-3">
+          <h1 className="font-medium border-b border-white/50 pb-3">
             Delete Ticket
           </h1>
           <div className="text-sm p-5 flex justify-between items-center">
@@ -271,6 +271,7 @@ function TicketDetails({
 
   const updatedTicketDetails = {
     ...specificTicketDetailsData,
+    userName: specificTicketDetailsData?.userDetails?.name,
     createdAt: formatDatAndTime(specificTicketDetailsData.createdAt),
     updatedAt: formatDatAndTime(specificTicketDetailsData.updatedAt),
   };
@@ -343,6 +344,14 @@ function TicketDetails({
           Overview
         </h1>
         <div className="grid grid-cols-1 divide-y-2">
+          <div className="grid grid-cols-3 p-5 text-sm">
+            <p className="font-medium col-span-1 capitalize flex items-center">
+              User Name
+            </p>
+            <p className="col-span-2 tracking-wide flex items-center capitalize">
+              {updatedTicketDetails?.userName || "N/A"}
+            </p>
+          </div>
           {headings.map((heading) => (
             <div className="grid grid-cols-3 p-5 text-sm" key={heading}>
               <p className="font-medium col-span-1 capitalize flex items-center">

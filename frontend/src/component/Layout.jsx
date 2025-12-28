@@ -15,6 +15,7 @@ import { setTicketStoreEmpty } from "../store/feature/ticketSlice";
 import { setUserStoreEmpty } from "../store/feature/userInfoSlice";
 import { removeUserInfoFromLocalStorage } from "../util/localStorage";
 
+import CustomCursor from "./Generic/CustomCursor";
 import useAuth from "../hooks/useauth";
 
 export default function Layout() {
@@ -59,12 +60,13 @@ export default function Layout() {
   async function onSignOutHandler() {
     try {
       await logout().unwrap();
+    } catch (error) {
+      console.error("Something went wrong Error X_x : ", error);
+    } finally {
       dispatch(setTicketStoreEmpty());
       dispatch(setUserStoreEmpty());
       removeUserInfoFromLocalStorage();
       navigateTo("/login");
-    } catch (error) {
-      console.error("Something went wrong Error X_x : ", error);
     }
   }
 
@@ -72,8 +74,13 @@ export default function Layout() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <section className="flex flex-col min-h-screen bg-gray-200">
-      <nav className="bg-white shadow flex justify-between items-center px-5 pr-10 xl:px-10 xl:pr-16 py-2 text-gray-800">
+    <section className="flex flex-col min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 relative overflow-hidden">
+      <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob pointer-events-none fixed"></div>
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000 pointer-events-none fixed"></div>
+      
+      <CustomCursor />
+      
+      <nav className="bg-white/70 backdrop-blur-md shadow-sm sticky top-0 z-50 flex justify-between items-center px-5 pr-10 xl:px-10 xl:pr-16 py-2 text-gray-800 border-b border-white/20">
         <div className="flex justify-between items-center gap-10">
           {tokenId ? (
             <div className="flex justify-center items-center gap-2">
@@ -83,18 +90,18 @@ export default function Layout() {
                   pathname === "/" ? "invisible" : "visible"
                 }`}
               >
-                <ChevronLeftIcon className="mt-1 size-7 hover:bg-gray-200 rounded-full" />
+                <ChevronLeftIcon className="mt-1 size-7 hover:bg-gray-200 rounded-full transition-colors" />
               </NavLink>
 
               <NavLink to="/" className="text-xl">
-                <span className="font-bold text-2xl">D</span>
-                <span>ashboard</span>
+                <span className="font-bold text-2xl text-blue-600">D</span>
+                <span className="font-medium">ashboard</span>
               </NavLink>
             </div>
           ) : (
-            <NavLink to="/" className="text-xl">
-              <span className="font-bold text-2xl">H</span>
-              <span>ome</span>
+            <NavLink to="/" className="text-xl group">
+              <span className="font-bold text-2xl text-blue-600 group-hover:text-blue-700 transition-colors">H</span>
+              <span className="font-medium group-hover:text-gray-900 transition-colors">ome</span>
             </NavLink>
           )}
         </div>
@@ -134,7 +141,7 @@ export default function Layout() {
           </div>
         )}
       </nav>
-      <section className="w-full h-full px-5 2xl:px-52 py-5 flex flex-grow">
+      <section className="w-full h-full px-5 2xl:px-52 py-5 flex flex-grow relative z-10">
         <Outlet />
       </section>
       {loggingOut && (

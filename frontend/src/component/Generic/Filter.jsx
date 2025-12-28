@@ -56,7 +56,7 @@ export default function GenericFilter({ options, disabled, selectedOption }) {
       >
         <div className="relative">
           <ListboxButton
-            className={`"focus:shadow block w-32 rounded-lg bg-white py-1.5 pr-8 pl-3 text-left text-sm/6 border border-gray-300 text-gray-800 focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 
+            className={`"focus:shadow block w-32 rounded-lg bg-white/60 backdrop-blur-md py-1.5 pr-8 pl-3 text-left text-sm/6 border border-white/50 text-gray-800 focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 
           ${disabled ? "cursor-not-allowed" : ""}
           `}
           >
@@ -68,7 +68,7 @@ export default function GenericFilter({ options, disabled, selectedOption }) {
           </ListboxButton>
           <ListboxOptions
             transition
-            className="shadow cursor-pointer absolute right-0 w-max z-20 mt-1 h-max overflow-auto rounded-lg bg-white p-1 focus:outline-none"
+            className="shadow cursor-pointer absolute right-0 w-max z-20 mt-1 h-max overflow-auto rounded-lg bg-white/90 backdrop-blur-md p-1 focus:outline-none border border-white/50"
           >
             {options.map((data) => {
               const IconComponent = iconMap[data.icon];
@@ -76,7 +76,7 @@ export default function GenericFilter({ options, disabled, selectedOption }) {
                 <ListboxOption
                   key={data.id}
                   value={data}
-                  className="font-medium group flex items-center gap-2 rounded py-1.5 px-3 select-none data-[focus]:bg-gray-200"
+                  className="font-medium group flex items-center gap-2 rounded py-1.5 px-3 select-none data-[focus]:bg-gray-200/50"
                 >
                   <IconComponent className="size-4 text-gray-700" />
                   <div className="flex flex-col">

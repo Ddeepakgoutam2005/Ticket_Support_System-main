@@ -17,6 +17,7 @@ const {
   updateUserTicketStatus,
   updateUserTicketAssignee,
   deleteUserTicket,
+  createAdmin,
 } = require("../controllers/user");
 
 router.get("/:userId", checkBlacklist, authenticate, getUserById);
@@ -100,6 +101,13 @@ router.delete(
   checkBlacklist,
   authenticate,
   deleteUserTicket
+);
+
+router.post(
+  "/:userId/create-admin",
+  checkBlacklist,
+  authenticate,
+  createAdmin
 );
 
 module.exports = router;

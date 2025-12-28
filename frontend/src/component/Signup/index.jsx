@@ -60,7 +60,7 @@ export function Signup() {
   return (
     <section className="h-full w-full flex justify-center items-center">
       <div>
-        <h1 className="my-5 font-medium border-b text-2xl border-gray-300 pb-3">
+        <h1 className="my-5 font-medium border-b text-2xl border-white/50 pb-3">
           Sign Up
         </h1>
         <form ref={formRef} onSubmit={onSubmitHandler} className="formStyle ">
@@ -112,15 +112,15 @@ export function Signup() {
             </Field>
           </div>
 
-          <div className="w-full flex flex-col justify-center px-4">
+          <div className="w-full flex flex-col justify-center mt-6">
             <Button
               type="submit"
               disabled={isLoading}
               className={`${
-                isLoading ? "genericDisablePrimary" : "genericPrimaryBtn"
-              } !w-full !text-lg`}
+                isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5"
+              } w-full py-3 rounded-lg text-white font-semibold transition-all duration-300`}
             >
-              {isLoading ? "Please wait" : "Sign Up"}
+              {isLoading ? "Creating..." : "Sign Up"}
             </Button>
             <div className="w-full flex justify-center pt-16">
               <p>

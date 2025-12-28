@@ -29,7 +29,7 @@ const GenericFailedRequest = forwardRef(({ errorMsg }, ref) => {
         <div className="flex min-h-full items-center justify-center p-4">
           <DialogPanel
             transition
-            className="gap-5 relative flex flex-col justify-center items-center w-full max-w-2xl h-[250px] shadow-xl rounded-xl bg-gray-50 p-6  duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+            className="gap-5 relative flex flex-col justify-center items-center w-full max-w-2xl h-[250px] shadow-xl border border-white/50 rounded-xl bg-white/80 backdrop-blur-xl p-6  duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
           >
             <XMarkIcon
               onClick={close}

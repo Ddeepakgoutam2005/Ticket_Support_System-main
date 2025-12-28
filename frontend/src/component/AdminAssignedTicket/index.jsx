@@ -144,7 +144,7 @@ export default function AdminAssignedTicket() {
         <div
           style={{ borderColor: detail.hexCode }}
           key={detail.label}
-          className="border-r-2 bg-gray-50 w-40 sm:w-52 lg:w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-2.5 sm:py-0"
+          className="border-r-2 bg-white/60 backdrop-blur-md border border-white/50 w-40 sm:w-52 lg:w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-2.5 sm:py-0"
         >
           <CircularProgressbar
             className="hidden lg:inline lg:size-24 xl:size-24"
@@ -181,7 +181,7 @@ export default function AdminAssignedTicket() {
       </h1>
       <main className="space-y-8">
         <section className="flex justify-start gap-10">
-          <div className="bg-gray-50 w-40 sm:w-52 lg:w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-5 sm:border-none">
+          <div className="bg-white/60 backdrop-blur-md border border-white/50 w-40 sm:w-52 lg:w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex justify-between items-center px-5 py-5 sm:border-none">
             <span className="text-stone-700  text-base sm:text-xl font-medium">
               Total Tickets
             </span>
@@ -191,7 +191,7 @@ export default function AdminAssignedTicket() {
           </div>
 
           {fetchingUserProfile ? (
-            <div className="bg-gray-50 min-w-max w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex flex-col px-5 py-5 sm:border-none">              
+            <div className="bg-white/60 backdrop-blur-md border border-white/50 min-w-max w-72 xl:w-80 hover:shadow-lg hover:shadow-black/20 transition-all duration-300 rounded-md shadow-md flex flex-col px-5 py-5 sm:border-none">              
               <p className="text-right"><span className="skeletonTd !h-3 !w-24"></span></p>
               <p className="text-right"><span className="skeletonTd !h-3 !w-52"></span></p>
 

@@ -139,7 +139,7 @@ exports.getUsersEmailAndIdList = async (req, res, next) => {
     const userRole = await getUserRole(userId);
 
     if (!["ADMIN", "SUPER_ADMIN"].includes(userRole))
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         data: null,
         message: `Your role does not allow to update ticket status`,
@@ -148,7 +148,7 @@ exports.getUsersEmailAndIdList = async (req, res, next) => {
     // Get the collection object and get the record
     const usersEmailAndIdList = await User.find(
       { role: "USER" },
-      { _id: 1, email: 1 }
+      { _id: 1, email: 1, name: 1 }
     );
 
     res.status(200).json({
@@ -176,7 +176,7 @@ exports.getAdminEmailAndIdList = async (req, res, next) => {
     const userRole = await getUserRole(userId);
 
     if (!["SUPER_ADMIN", "ADMIN"].includes(userRole))
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         data: null,
         message: `Your role does not allow to fetch admin details`,
@@ -277,7 +277,7 @@ exports.getSuperAdminDetails = async (req, res, next) => {
     const userRole = await getUserRole(userId);
 
     if (!["SUPER_ADMIN"].includes(userRole))
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         data: null,
         message: `Your role does not allow to fetch super admin details`,
@@ -316,7 +316,7 @@ exports.getUserTickets = async (req, res, next) => {
       ? { assigneeDetails: userId }
       : { userDetails: userId };
 
-    const ticketDetails = await Ticket.find(query);
+    const ticketDetails = await Ticket.find(query).populate('userDetails', 'name');
 
     res.status(200).json({
       success: true,
@@ -501,6 +501,54 @@ exports.updateUserTicketAssignee = async (req, res, next) => {
   }
 };
 
+exports.createAdmin = async (req, res, next) => {
+  // Simulate delay
+  await new Promise((resolve) => setTimeout(resolve, DELAY));
+
+  const { userId } = req.params;
+  const { name, email, password } = req.body;
+
+  try {
+    const userRole = await getUserRole(userId);
+
+    if (!["SUPER_ADMIN"].includes(userRole))
+      return res.status(403).json({
+        success: false,
+        data: null,
+        message: `Your role does not allow to create admin`,
+      });
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        data: null,
+        message: "User already exists",
+      });
+    }
+
+    const newAdmin = await User.create({
+      name,
+      email,
+      password,
+      role: "ADMIN",
+    });
+
+    res.status(200).json({
+      success: true,
+      data: newAdmin,
+      message: `Admin created successfully`,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      data: null,
+      message: `Failed to create admin : ${err.message}`,
+    });
+  }
+};
+
 exports.deleteUserTicket = async (req, res, next) => {
   // Simulate delay
   await new Promise((resolve) => setTimeout(resolve, DELAY));
@@ -511,7 +559,7 @@ exports.deleteUserTicket = async (req, res, next) => {
     const userRole = await getUserRole(userId);
 
     if (!["SUPER_ADMIN"].includes(userRole))
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         data: null,
         message: `Your role does not allow to delete ticket `,

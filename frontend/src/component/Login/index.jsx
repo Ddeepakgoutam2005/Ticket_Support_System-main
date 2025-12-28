@@ -60,7 +60,7 @@ export function Login() {
   return (
     <section className="w-full flex justify-center items-center">
       <div className="relative w-96">
-        <h1 className="my-5 font-medium border-b text-2xl border-gray-300 pb-3">
+        <h1 className="my-5 font-medium border-b text-2xl border-white/50 pb-3">
           Login
         </h1>
         <form ref={formRef} onSubmit={onSubmitHandler} className="formStyle ">
@@ -89,15 +89,15 @@ export function Login() {
             </Field>
           </div>
 
-          <div className="w-full flex flex-col justify-center px-4">
+          <div className="w-full flex flex-col justify-center mt-4">
             <Button
               type="submit"
               disabled={isLoading}
               className={`${
-                isLoading ? "genericDisablePrimary" : "genericPrimaryBtn"
-              } !w-full !text-lg`}
+                isLoading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5"
+              } w-full py-3 rounded-lg text-white font-semibold transition-all duration-300`}
             >
-              {isLoading ? "Veryfing" : "Login"}
+              {isLoading ? "Verifying..." : "Login"}
             </Button>
             <div className="w-full flex justify-center pt-16">
               <p>

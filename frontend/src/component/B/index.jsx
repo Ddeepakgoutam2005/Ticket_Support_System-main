@@ -67,7 +67,7 @@ export function B() {
 
   return (
     <section className="space-y-5 w-full">
-      <h1 className="mb-5 pb-3 font-medium border-b text-2xl border-gray-300">
+      <h1 className="mb-5 pb-3 font-medium border-b text-2xl border-white/50">
         View Tickets
       </h1>
       <GenericSearchBox disabled={isLoading} />

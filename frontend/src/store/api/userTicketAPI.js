@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const userTicketAPI = createApi({
   reducerPath: "userTicketAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8080/user",
+    baseUrl: import.meta.env.VITE_API_BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().userInfoReducer.tokenId;
       if (token) headers.set("Authorization", `Bearer ${token}`);
@@ -20,7 +20,7 @@ export const userTicketAPI = createApi({
      */
     getAllUserTickets: builder.query({
       // function defines the end-point for the query
-      query: ({ userId }) => `/${userId}/get-tickets`,
+      query: ({ userId }) => `/user/${userId}/get-tickets`,
 
       // Tags are used in RTK Query to handle cache invalidation and automatic refetching.
       providesTags: (result, error, arg) => {
@@ -36,15 +36,15 @@ export const userTicketAPI = createApi({
       keepUnusedDataFor: 3600,
     }),
     getAssignedTickets: builder.query({
-      query: ({ userId }) => `/${userId}/get-tickets`,
+      query: ({ userId }) => `/user/${userId}/get-tickets`,
       providesTags: () => ["AssignedTickets"],
     }),
     getUserProfile: builder.query({
-      query: ({ userId }) => `/${userId}`,
+      query: ({ userId }) => `/user/${userId}`,
       keepUnusedDataFor: 3600,
     }),
     getAllTicketOverview: builder.query({
-      query: ({ userId }) => `/${userId}/all-ticket-overview`,
+      query: ({ userId }) => `/user/${userId}/all-ticket-overview`,
       keepUnusedDataFor: 1,
       invalidatesTags: ["Tickets"],
     }),
@@ -52,7 +52,7 @@ export const userTicketAPI = createApi({
      * To get details of specific ticket
      */
     getSpecificUserTicket: builder.query({
-      query: ({ userId, ticketId }) => `/${userId}/get-ticket/${ticketId}`,
+      query: ({ userId, ticketId }) => `/user/${userId}/get-ticket/${ticketId}`,
       providesTags: (result, error, arg) => {
         const tags = [{ type: "SpecificUserTicket", ticketId: arg.ticketId }];
         return tags;
@@ -62,13 +62,13 @@ export const userTicketAPI = createApi({
      * To get user names and ids
      */
     getUsersEmailAndIdList: builder.query({
-      query: ({ userId }) => `/${userId}/get-users`,
+      query: ({ userId }) => `/user/${userId}/get-users`,
     }),
     /**
      * To get admin email, names and ids
      */
     getAdminEmailAndIdList: builder.query({
-      query: ({ userId }) => `/${userId}/get-admin`,
+      query: ({ userId }) => `/user/${userId}/get-admin`,
       keepUnusedDataFor: 1,
       providesTags: ["AdminDetails"],
       invalidatesTags: ["Tickets"],
@@ -77,7 +77,7 @@ export const userTicketAPI = createApi({
      * To get admin email, names and ids
      */
     getSuperAdminDetails: builder.query({
-      query: ({ userId }) => `/${userId}/get-super-admin`,
+      query: ({ userId }) => `/user/${userId}/get-super-admin`,
       keepUnusedDataFor: 3600,
     }),
     /**
@@ -85,7 +85,7 @@ export const userTicketAPI = createApi({
      */
     createUserTicket: builder.mutation({
       query: ({ userId, newTicket }) => ({
-        url: `/${userId}/create-ticket`,
+        url: `/user/${userId}/create-ticket`,
         method: "POST",
         body: newTicket,
       }),
@@ -98,7 +98,7 @@ export const userTicketAPI = createApi({
      */
     updateUserTicket: builder.mutation({
       query: ({ userId, ticketId, updatedTicket }) => ({
-        url: `/${userId}/update-ticket/${ticketId}`,
+        url: `/user/${userId}/update-ticket/${ticketId}`,
         method: "PUT",
         body: updatedTicket,
       }),
@@ -115,7 +115,7 @@ export const userTicketAPI = createApi({
      */
     updateUserTicketStatus: builder.mutation({
       query: ({ userId, ticketId, updatedStatus }) => ({
-        url: `/${userId}/update-ticket-status/${ticketId}`,
+        url: `/user/${userId}/update-ticket-status/${ticketId}`,
         method: "PATCH",
         body: updatedStatus,
       }),
@@ -132,7 +132,7 @@ export const userTicketAPI = createApi({
      */
     updateUserTicketAssignee: builder.mutation({
       query: ({ userId, ticketId, assigneeId }) => ({
-        url: `/${userId}/update-ticket-assignee/${ticketId}`,
+        url: `/user/${userId}/update-ticket-assignee/${ticketId}`,
         method: "PATCH",
         body: assigneeId,
       }),
@@ -149,10 +149,21 @@ export const userTicketAPI = createApi({
      */
     deleteUserTicket: builder.mutation({
       query: ({ userId, ticketId }) => ({
-        url: `${userId}/delete-ticket/${ticketId}`,
+        url: `/user/${userId}/delete-ticket/${ticketId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Tickets", "AdminDetails", "AssignedTickets"],
+    }),
+    /**
+     * To create admin
+     */
+    createAdmin: builder.mutation({
+      query: ({ userId, adminData }) => ({
+        url: `/user/${userId}/create-admin`,
+        method: "POST",
+        body: adminData,
+      }),
+      invalidatesTags: ["AdminDetails"],
     }),
   }),
 });
@@ -171,4 +182,5 @@ export const {
   useUpdateUserTicketStatusMutation,
   useUpdateUserTicketAssigneeMutation,
   useDeleteUserTicketMutation,
+  useCreateAdminMutation,
 } = userTicketAPI;

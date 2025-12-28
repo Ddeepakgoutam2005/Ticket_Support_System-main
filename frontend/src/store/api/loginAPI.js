@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const loginAPI = createApi({
   reducerPath: "loginAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8080/auth",
+    baseUrl: import.meta.env.VITE_API_BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().userInfoReducer.tokenId;
       if (token) headers.set("Authorization", `Bearer ${token}`);
@@ -20,7 +20,7 @@ export const loginAPI = createApi({
      */
     login: builder.mutation({
       query: (credentials) => ({
-        url: "/login",
+        url: "/auth/login",
         method: "Post",
         body: credentials,
       }),
@@ -31,7 +31,7 @@ export const loginAPI = createApi({
      */
     register: builder.mutation({
       query: (userInfo) => ({
-        url: "/register",
+        url: "/auth/register",
         method: "Post",
         body: userInfo,
       }),
@@ -42,7 +42,7 @@ export const loginAPI = createApi({
      */
     logout: builder.mutation({
       query: () => ({
-        url: "/logout",
+        url: "/auth/logout",
         method: "Get",
       }),
       invalidatesTags: ["Login", "Signup"],

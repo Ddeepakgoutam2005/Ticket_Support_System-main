@@ -64,7 +64,7 @@ export function A() {
 
   return (
     <section className="h-full w-full">
-      <h1 className="mb-5 pb-3 font-medium border-b text-2xl border-gray-300">
+      <h1 className="mb-5 pb-3 font-medium border-b text-2xl border-white/50">
         Create Ticket
       </h1>
       <form ref={formRef} onSubmit={onSubmitHandler} className="formStyle">

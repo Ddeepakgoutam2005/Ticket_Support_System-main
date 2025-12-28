@@ -33,7 +33,7 @@ export function GenericSearchBox({ disabled }) {
         <Field>
           <Label className="labelStyle">Search from {context} tickets</Label>
           <div className="relative">
-            <span className="absolute top-2 left-2 border-r border-gray-300 px-2">
+            <span className="absolute top-2 left-2 border-r border-white/50 px-2">
               <MagnifyingGlassIcon className="size-5 text-gray-600" />
             </span>
             <Input

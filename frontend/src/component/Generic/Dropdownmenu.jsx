@@ -17,12 +17,12 @@ export default function DropdownMenu() {
 
         <MenuItems
           transition
-          className="absolute mt-0.5 right-0 bg-white shadow-lg border w-40 origin-top-right rounded-md p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+          className="absolute mt-0.5 right-0 bg-white/90 backdrop-blur-md shadow-lg border border-white/50 w-40 origin-top-right rounded-md p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
         >
           <MenuItem className="flex justify-between">
             <NavLink
               to="ticket/create"
-              className="font-medium group flex w-full items-center rounded py-1.5 px-3 hover:bg-gray-200 text-gray-800"
+              className="font-medium group flex w-full items-center rounded py-1.5 px-3 hover:bg-gray-200/50 text-gray-800"
             >
               <PencilIcon className="size-4 group-hover:translate-x-2 transition-all duration-500" />
               Create Ticket
@@ -31,7 +31,7 @@ export default function DropdownMenu() {
           <MenuItem className="flex justify-between">
             <NavLink
               to="ticket/view"
-              className="font-medium group flex w-full items-center rounded py-1.5 px-3 hover:bg-gray-200 text-gray-800"
+              className="font-medium group flex w-full items-center rounded py-1.5 px-3 hover:bg-gray-200/50 text-gray-800"
             >
               <Square2StackIcon className="size-4 group-hover:translate-x-2 transition-all duration-500" />
               View Tickets

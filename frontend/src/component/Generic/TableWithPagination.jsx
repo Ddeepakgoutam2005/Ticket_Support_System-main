@@ -66,9 +66,10 @@ export function TableWithPagination({ tableHeading, tableRowData }) {
                       {idx + 1 + (currentPage - 1) * 5}
                     </td>
                     {values.map((value, idx) => {
-                      const [rowData, cssClass] = value.includes("CSS_CLASS")
-                        ? value.split("CSS_CLASS")
-                        : [value, ""];
+                      const [rowData, cssClass] =
+                        typeof value === "string" && value.includes("CSS_CLASS")
+                          ? value.split("CSS_CLASS")
+                          : [value, ""];
                       return (
                         <td key={idx + id} className="genericTbody">
                           <span className={`${cssClass}`}>{rowData}</span>
@@ -83,13 +84,13 @@ export function TableWithPagination({ tableHeading, tableRowData }) {
 
           {totalPage != 1 && (
             <div className="flex justify-center p-2 rounded-md">
-              <div className="flex items-center justify-center text-gray-500 bg-gray-200 rounded-full gap-5 p-1">
+              <div className="flex items-center justify-center text-gray-500 bg-white/40 rounded-full gap-5 p-1">
                 <button onClick={onPrevHandler} disabled={currentPage == 1}>
                   <ChevronLeftIcon
                     className={`size-5 ${
                       currentPage == 1
                         ? "cursor-not-allowed text-gray-400"
-                        : "cursor-pointer hover:bg-gray-50 rounded-full active:scale-75"
+                        : "cursor-pointer hover:bg-white/60 rounded-full active:scale-75"
                     }`}
                   />
                 </button>

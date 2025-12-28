@@ -33,7 +33,7 @@ exports.getTicketById = async (req, res) => {
   try {
     const targetTicket = await Ticket.findById({
       _id: new ObjectId(ticketId),
-    });
+    }).populate("userDetails", "name");
 
     if (!targetTicket) throw Error(`Invalid ticket id : ${ticketId}`);
 

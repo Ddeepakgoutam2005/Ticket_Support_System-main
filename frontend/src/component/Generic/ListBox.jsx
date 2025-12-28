@@ -37,8 +37,8 @@ export default function GenericListBox({
       >
         <div className="relative">
           <ListboxButton
-            className={`capitalize focus:shadow block w-full rounded-lg py-1.5 pr-8 pl-3 text-left text-sm/6 border border-gray-300 text-gray-800 focus:outline-none ${
-              disabled ? "bg-[#f6f7f7]" : "bg-white"
+            className={`capitalize focus:shadow block w-full rounded-lg py-1.5 pr-8 pl-3 text-left text-sm/6 border border-white/50 text-gray-800 focus:outline-none ${
+              disabled ? "bg-white/40" : "bg-white/60 backdrop-blur-md"
             }`}
           >
             {selected?.name || "Select an option"}
@@ -49,13 +49,13 @@ export default function GenericListBox({
           </ListboxButton>
           <ListboxOptions
             transition
-            className="shadow cursor-pointer absolute w-full mt-1 max-h-60 overflow-auto rounded-lg bg-white p-1 focus:outline-none z-10"
+            className="shadow cursor-pointer absolute w-full mt-1 max-h-60 overflow-auto rounded-lg bg-white/90 backdrop-blur-md p-1 focus:outline-none z-10 border border-white/50"
           >
             {options.map((data) => (
               <ListboxOption
                 key={data.id}
                 value={data}
-                className="font-medium group flex items-center gap-2 rounded py-1.5 px-3 select-none data-[focus]:bg-gray-200"
+                className="font-medium group flex items-center gap-2 rounded py-1.5 px-3 select-none data-[focus]:bg-gray-200/50"
               >
                 <CheckIcon className="invisible w-4 h-4 text-gray-800 group-data-[selected]:visible" />
                 <div className="text-sm/6 text-gray-800 capitalize">
