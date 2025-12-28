@@ -71,9 +71,9 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div variants={itemVariants} className="mt-5">
-            <a href="/login" className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            {/* <a href="/login" className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               Get Started
-            </a>
+            </a> */}
           </motion.div>
         </motion.div>
 

@@ -75,8 +75,8 @@ export default function Layout() {
 
   return (
     <section className="flex flex-col min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 relative overflow-hidden">
-      <div className="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob pointer-events-none fixed"></div>
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000 pointer-events-none fixed"></div>
+      <div className=" top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob pointer-events-none fixed"></div>
+      <div className=" bottom-20 -left-20 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000 pointer-events-none fixed"></div>
       
       <CustomCursor />
       
